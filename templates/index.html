@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Smart Grain Storage Predictor</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-image: url("{{ url_for('static', filename='a.png') }}");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    background: rgba(234, 240, 233, 0.9);
+    padding: 25px;
+    width: 700px;
+    border-radius: 25px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin: 6px 0 15px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #024e27;
+    border: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #78e435;
+}
+
+.result {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Smart Grain Storage System</h2>
+
+<form method="POST">
+
+<label>Temperature (°C)</label>
+<input type="number" step="0.1" name="temperature" required>
+
+<label>Humidity (%)</label>
+<input type="number" step="0.1" name="humidity" required>
+
+<button type="submit">Predict Storage Life</button>
+
+</form>
+
+<div class="result">
+
+{% if prediction is not none %}
+
+<p><b>Temperature:</b> {{ temperature }} °C</p>
+
+<p><b>Humidity:</b> {{ humidity }} %</p>
+
+<p><b>Predicted Storage Life:</b> {{ prediction }} months</p>
+
+<p><b>Predicted Storage Life (Days):</b> {{ days }} days</p>
+
+<p><b>Recommended Farmer Action:</b> {{ farmer_action }}</p>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</body>
+</html>
